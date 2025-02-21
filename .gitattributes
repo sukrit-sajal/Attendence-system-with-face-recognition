@@ -2,3 +2,7 @@
 *.html linguist-detectable=true linguist-weight=0
 *.css linguist-detectable=true linguist-weight=0
 *.js linguist-detectable=true linguist-weight=0
+static/* linguist-vendored
+templates/* linguist-vendored
+node_modules/* linguist-vendored
+migrations/* linguist-vendored
