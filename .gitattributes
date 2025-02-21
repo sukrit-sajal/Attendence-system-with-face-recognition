@@ -1,6 +1,6 @@
 *.py linguist-detectable=true linguist-weight=5
 *.html linguist-detectable=true linguist-weight=0
-*.css linguist-detectable=true linguist-weight=0
+*.css linguist-detectable=false linguist-weight=0
 *.js linguist-detectable=true linguist-weight=0
 static/* linguist-vendored
 templates/* linguist-vendored
