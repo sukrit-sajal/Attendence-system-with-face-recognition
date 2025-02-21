@@ -1,4 +1,4 @@
-*.py linguist-weight=5
-*.html linguist-weight=1
-*.css linguist-weight=1
+*.py linguist-weight=10
+*.html linguist-weight=2
+*.css linguist-weight=2
 *.js linguist-weight=1
