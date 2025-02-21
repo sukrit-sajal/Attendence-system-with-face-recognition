@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance_System</title>
+    <link rel="stylesheet" href="http://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> 
+    <script defer src="{{ url_for('static', filename='js/script.js') }}">
+        function updateStatus(msg) {
+            var status = document.getElementById("status");
+            status.innerText = msg;
+        }
+
+        function noImage() {
+            document.getElementById("streamer").style = "display:none";
+            updateStatus("Waiting");
+        }
+
+        var i = 0;
+        function updateFrame() {
+            var img = document.getElementById("streamer");
+            img.src = "RIgvEhBr.jpeg#" + i;
+            img.style = "display:";
+            updateStatus("Playing");
+            i++;
+        }
+
+        setInterval(function() {
+            updateFrame();
+        }, 25);
+
+
+        function toggleVideoo() {
+            var videoElement = document.getElementById("videoo");
+            var button = document.getElementById("recordattendd");
+
+            if (videoElement.style.display === "none") {
+                // Show the video feed and update the button text
+                videoElement.style.display = "block";
+                button.innerText = "Stop Recording Attendance";
+            } else {
+                // Hide the video feed and update the button text
+                videoElement.style.display = "none";
+                button.innerText = "Start Recording Attendance";
+            }
+        }
+    </script>
+</head>
+<body style="background-color: powderblue;">
+
+<section id="header">
+    <a href="{{ url_for('home') }}">Synergy Institute of Technology</a>
+    <div>
+        <ul id="navbar">
+            <li><a class="active" href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('attendance') }}">Attendance</a></li>
+            <li><a href="{{ url_for('database') }}">Database</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        </ul>
+    </div>
+</section>
+
+<section id="banner" class="section-m1">
+    <h4>Welcome to the official website for monitoring student attendance</h4>
+    <h2>you can see attendance<span></span> and student details too</h2>
+    <button class="normal">Learn more</button>
+</section>
+
+<div>
+    <!-- <button id="recordattendd">Record Attendance</button>
+    <img src="{{ url_for('video_capture') }}" id="videoo" width="50%"> -->
+    <button id="toggleCameraBtn">Open Camera</button>
+    <img id="camera" width="640" height="480" style="display: none;"/>
+    
+    <script>
+        const button = document.getElementById('toggleCameraBtn');
+        const camera = document.getElementById('camera');
+        let isCameraActive = false;
+    
+        button.addEventListener('click', () => {
+            if (isCameraActive) {
+                // Stop the camera stream and hide the image element
+                camera.style.display = 'none';
+                button.textContent = 'Open Camera';
+                // Stop the video stream by sending an appropriate request to the server
+                fetch("/stop_camera");
+                isCameraActive = false;
+            } else {
+                // Start the camera stream and show the image element
+                camera.src = "{{ url_for('video_capture') }}";  // This will stream the video from Flask
+                camera.style.display = 'block';
+                button.textContent = 'Close Camera';
+                isCameraActive = true;
+            }
+        });
+            function stopCamera() {
+            // Send a request to the Flask route to stop the camera
+            fetch('/stop_camera')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.status); // Log status message
+            })
+            .catch(error => {
+                console.error('Error stopping the camera:', error);
+            });
+        }
+
+    </script>
+    
+    
+</div>
+<h2> </h2>
+<div>
+    <button id="dataButton">Add new data</button>
+    <div id="dataContent" style="display: none;">
+        <div class="container">
+            <form id="addStudentForm" action="/admin " method="POST" enctype="multipart/form-data">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name"><br><br>
+                <label for="registration">Registration Number:</label>
+                <input type="text" id="registration" name="registration"><br><br>
+                <input type="file" id="image" name="image"><br><br>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+<h2> </h2>
+<div>
+    <a href="{{ url_for('database') }}">
+        <button>Load database</button>
+        </a>
+</div>
+<h2></h2>
+<div>
+    <a href="{{ url_for('attendance') }}">
+        <button>Load Attendance</button>
+    </a> 
+</div>
+
+<!-- <div class="container">
+    <h2>STUDENTS DATABASE </h2>
+    <button id="databaseButton">Load Database</button>
+    <div id="databaseContent" style="display: none;">
+        <h1>Students Data</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Reg No Last Three Digits</th>
+                    <th>Name</th>
+                    <th>Reg No</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in record1 %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div> -->
+
+<script>
+     function updateStatus(msg) {
+            var status = document.getElementById("status");
+            status.innerText = msg;
+        }
+
+        function noImage() {
+            document.getElementById("streamer").style = "display:none";
+            updateStatus("Waiting");
+        }
+
+        // Toggle the video feed when Record Attendance button is clicked
+        function toggleCamera() {
+            var videoElement = document.getElementById("video");
+            var button = document.getElementById("recordattendd");
+
+            if (videoElement.style.display === "none") {
+                // Show the video feed and update the button text
+                videoElement.style.display = "block";
+                button.innerText = "Stop Recording Attendance";
+            } else {
+                // Hide the video feed and update the button text
+                videoElement.style.display = "none";
+                button.innerText = "Record Attendance";
+            }
+        }
+</script>
+<footer class="section-p1"> 
+    <div class="col">
+        <h3>Synergy Institute of Technology</h3>
+        <h4>Contact</h4>
+        <p>Synergy Institute of Technology, Bhubaneswar</p>
+        <p><strong>Phone:</strong> 1029384756 </p>
+        <p><strong>Hours:</strong> 10:00 AM - 5:00 PM, Mon - Sat</p>
+        <div class="follow"> 
+            <h4>Follow Us</h4>
+            <div class="icon">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                <a href="#"> <i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <h4>About</h4>
+        <a href="about.html">About us</a>
+        <a href="#">Delivery Information</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Term & Conditions</a>
+        <a href="contact.html">Contact us</a>
+    </div>
+    <div class="col install">
+        <h4>Install App</h4>
+        <p>From App Store And Play Store</p>
+        <div class="row"> 
+            <h4>Coming Soon...!</h4>
+        </div>
+    </div>
+</footer>
+
+
+</body>
+</html>
+

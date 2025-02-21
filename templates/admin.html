@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <a href="{{ url_for('logout') }}">Logout</a>
+    
+    <h2>Tables in Database</h2>
+    <ul>
+        {% for table_name in tables %}
+        <li>{{ table_name[0] }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Attendance Records</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                {% if records and records[0] %}
+                {% for column_name in records[0].keys() %}
+                <th>{{ column_name }}</th>
+                {% endfor %}
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% if records %}
+            {% for record in records %}
+            <tr>
+                {% for value in record %}
+                <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+</body>
+</html>

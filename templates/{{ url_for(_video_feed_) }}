@@ -1,0 +1,6 @@
+from flask import Response
+from run01 import app, gen_frames  # Import your Flask app instance and gen_frames function
+
+@app.route('/video_feed')
+def video_feed():
+     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Page</title>
+    <link rel="stylesheet" href="static/css/style.css">
+
+</head>
+<body>
+    <div class="container">
+        <h2>STUDENTS DATABASE </h2>
+        <button id="databaseButton">Load Database</button>
+        <div id="databaseContent" style="display: none;">
+            <h1>Students Data</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Reg No Last Three Digits</th>
+                        <th>Name</th>
+                        <th>Reg No</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in record1 %}
+                    <tr>
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container">
+        <h2>ATTENDANCE DATABASE</h2>
+        <button id="attendanceButton">Load Attendance</button>
+        <div id="attendanceContent" style="display: none;">
+            <h1>Attendance Data</h1>
+            <table>
+                <thead>
+                    <tr>
+                        {% for column in column_names %}
+                            <th>{{ column }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in record2 %}
+                        <tr>
+                            {% for value in row %}
+                                <td>{{ value }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>            
+    <script src="static/js/script.js"></script>
+</body>
+</html>

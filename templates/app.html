@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+          <h3 class="mt-5">Live Streaming</h3>
+          <img src="/video_cam" width="100%">
+          <div id="feedback"></div>
+        </div>
+      </div>
+    </div>
+    <!-- <script>
+      setInterval(() => {
+        fetch('/video_cam_feedback')
+          .then(response => response.json())
+          .then(data => {
+            document.getElementById('feedback').innerHTML = data.names.join(', ');
+          });
+      }, 1000);
+    </script> -->
+  </body>
+</html>

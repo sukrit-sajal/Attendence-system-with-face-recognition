@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance_System </title>
+    <link rel="stylesheet" href="http://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <section id="header">
+        <a href="#">Synergy Institute of Technology</a>
+        <div>
+            <ul id="navbar">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a class="active" href="{{ url_for('attendance') }}">attendance</a></li>
+                <li><a href="{{ url_for('database') }}">database</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </div>
+        <div id="mobile">
+                <a href="cart.html"><i class="far fa-shopping-bag"></i></a>
+                <i id="bar" class="fas fa-outdent"></i>
+        </div>
+    </section>
+
+    <div class=" container">
+            <h1>Attendance Data</h1>
+            <table>
+                <thead>
+                    <tr>
+                        {% for column in column_names %}
+                            <th>{{ column }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in record2 %}
+                        <tr>
+                            {% for value in row %}
+                                <td>{{ value }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>   
+    </div>
+    
+<footer class="section-p1"> 
+    <div class="col">
+        <h3>Synergy Institute of Technology</h3>
+        <h4>Contact</h4>Synergy Institute of Technology, bhuubneswar </p>
+        <p><strong>Phone:</strong> 1029384756 </p>
+        <p><strong>Hours:</strong> 10:00 AM - 5:00 PM, Mon - Sat</p>
+        <div class="follow"> 
+            <h4>Follow Us</h4>
+            <div class="icon">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                <a href="#"> <i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <h4>About</h4>
+        <a href="about.html">About us</a>
+        <a href="#">Delivery Information</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Term & Conditions</a>
+        <a href="contact.html">Contact us</a>
+    </div>
+    <div class="col">
+        <h4>My Account</h4>
+        <a href="#">Sing In</a>
+        <a href="cart.html">View Cart</a>
+        <a href="#">My Wishlist</a>
+        <a href="#">Track Order</a>
+        <a href="contact.html">Helps & Support</a>
+    </div>
+    <div class="col install">
+        <h4> Install App</h4>
+        <p>From App Store And Play Store </p>
+        <div class="row"> 
+            
+            <h4>Coming Soon...!</h4>
+        </div>
+        
+    </div>
+</footer>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
