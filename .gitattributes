@@ -1,4 +1,4 @@
 *.py linguist-detectable=true linguist-weight=5
-*.html linguist-detectable=true linguist-weight=1
-*.css linguist-detectable=true linguist-weight=1
-*.js linguist-detectable=true linguist-weight=1
+*.html linguist-detectable=true linguist-weight=0
+*.css linguist-detectable=true linguist-weight=0
+*.js linguist-detectable=true linguist-weight=0
